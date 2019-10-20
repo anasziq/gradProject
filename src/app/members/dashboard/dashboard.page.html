@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot = "start">
+      <ion-button (click) = "logout()">
+        <ion-icon slot ="icon-only" name ="log-out">
+
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
+  <ion-item>
+    <ion-label position="floating">Destination</ion-label>
+    <ion-input formControlName="destination"></ion-input>
+  </ion-item>
+  <ion-button expand="full" type="submit" [disabled]="!directionForm.valid">Get Direction</ion-button>
+</form>
+
+<ion-content>
+  <div #mapElement class="map"></div>  
+</ion-content>
+

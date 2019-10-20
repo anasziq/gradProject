@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  padding>
+  
+    <ion-item>
+        <ion-label color = "success" position="floating" >Email:</ion-label>
+        <ion-input placeholder-shown="what" type="text" [(ngModel)]="email"  ></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color = "success" position="floating">password:</ion-label>
+        <ion-input color = "#00FFFFFF" type ="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  <ion-button (click) = "login()" expand = "block" color="dark">Log In</ion-button>
+  <ion-button (click)="GoToRegister()" expand="block" color ="success">Register</ion-button>
+
+</ion-content>

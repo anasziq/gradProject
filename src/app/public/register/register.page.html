@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+        <ion-buttons slot = "start">
+                <ion-button (click) = "backToLogin()">
+                  <ion-icon slot ="icon-only" name ="log-out">
+                  </ion-icon>
+                </ion-button>
+        </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content padding class="form-content">
+    <form [formGroup] = "myform">
+        <ion-item>
+            <ion-label position="floating" color="success">Name:</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <ion-label position="floating" color="success">Email:</ion-label>
+            <ion-input formControlName="email" type="text" ></ion-input>           
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.email">
+            <div class="error-message" *ngIf="myform.get('email').hasError(error.type) && (myform.get('email').dirty || myform.get('email').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <div formGroupName="matching_passwords">
+          <ion-item>
+            <ion-label position="floating" color="success">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.password">
+              <div class="error-message" *ngIf="myform.get('matching_passwords').get('password').hasError(error.type) && (myform.get('matching_passwords').get('password').dirty || myform.get('matching_passwords').get('password').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+    
+          <ion-item>
+            <ion-label position="floating" color="success">Confirm Password</ion-label>
+            <ion-input type="password" formControlName="repassword"></ion-input>
+          </ion-item>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.repassword">
+              <div class="error-message" *ngIf="myform.get('matching_passwords').get('repassword').hasError(error.type) && (myform.get('matching_passwords').get('repassword').dirty || myform.get('matching_passwords').get('repassword').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <!-- These validations are for the form group -->
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.matching_passwords">
+            <div class="error-message" *ngIf="myform.get('matching_passwords').hasError(error.type) && (myform.get('matching_passwords').get('repassword').dirty || myform.get('matching_passwords').get('repassword').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-button [disabled]="!myform.valid" (click) = "signup()" expand = "block" color="success">Sign up</ion-button>
+    </form>
+
+
+</ion-content>
